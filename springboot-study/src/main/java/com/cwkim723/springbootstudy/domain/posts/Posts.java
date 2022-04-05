@@ -1,5 +1,6 @@
 package com.cwkim723.springbootstudy.domain.posts;
 
+import com.cwkim723.springbootstudy.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
     // Entity에서는 setter X -> 생성자를 통해 최종 값을 채운 후 db 삽입. 값 변경 시에는 해당 이벤트에 맞는 public 메소드 호출하여 변경
     // 빌더 사용 이유 -> 어느 필드에 어떤 값을 채워야 할지 명확하게 인지 가능
 
