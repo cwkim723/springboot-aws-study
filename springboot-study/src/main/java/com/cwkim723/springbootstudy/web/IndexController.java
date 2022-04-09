@@ -1,5 +1,6 @@
 package com.cwkim723.springbootstudy.web;
 
+import com.cwkim723.springbootstudy.config.auth.LoginUser;
 import com.cwkim723.springbootstudy.config.auth.dto.SessionUser;
 import com.cwkim723.springbootstudy.domain.user.User;
 import com.cwkim723.springbootstudy.service.PostsService;
@@ -20,9 +21,8 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if(user != null){
             // https://4ngeunlee.tistory.com/369
