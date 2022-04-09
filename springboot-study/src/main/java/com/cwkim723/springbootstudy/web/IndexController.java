@@ -1,5 +1,7 @@
 package com.cwkim723.springbootstudy.web;
 
+import com.cwkim723.springbootstudy.config.auth.dto.SessionUser;
+import com.cwkim723.springbootstudy.domain.user.User;
 import com.cwkim723.springbootstudy.service.PostsService;
 import com.cwkim723.springbootstudy.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -8,15 +10,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
+
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
     private final PostsService postsService;
+    private final HttpSession httpSession;
 
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("posts", postsService.findAllDesc());
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if(user != null){
+            // https://4ngeunlee.tistory.com/369
+            model.addAttribute("name", user.getName());
+        }
         return "index";
     }
 
