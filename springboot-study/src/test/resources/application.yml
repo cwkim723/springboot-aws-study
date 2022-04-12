@@ -1,6 +1,8 @@
 server:
   port: 8090
 spring:
+  mustache:
+    expose-session-attributes: true
   profiles:
     include: oauth
   h2:
