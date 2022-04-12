@@ -21,18 +21,14 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user){
+    public String index(Model model){
         model.addAttribute("posts", postsService.findAllDesc());
-
-        if(user != null){
-            // https://4ngeunlee.tistory.com/369
-            model.addAttribute("name", user.getName());
-        }
         return "index";
     }
 
     @GetMapping("/posts/save")
-    public String postsSave(){
+    public String postsSave(Model model){
+
         return "posts-save";
     }
 

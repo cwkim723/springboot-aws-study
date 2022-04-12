@@ -1,6 +1,7 @@
 package com.cwkim723.springbootstudy.domain.book;
 
 import com.cwkim723.springbootstudy.exception.NotEnoughStockException;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Builder
-public abstract class Book {
+@AllArgsConstructor
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
