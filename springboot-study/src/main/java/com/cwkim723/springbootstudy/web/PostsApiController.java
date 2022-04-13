@@ -1,5 +1,7 @@
 package com.cwkim723.springbootstudy.web;
 
+import com.cwkim723.springbootstudy.config.auth.LoginUser;
+import com.cwkim723.springbootstudy.config.auth.dto.SessionUser;
 import com.cwkim723.springbootstudy.service.PostsService;
 import com.cwkim723.springbootstudy.web.dto.PostsResponseDto;
 import com.cwkim723.springbootstudy.web.dto.PostsSaveRequestDto;
@@ -15,7 +17,8 @@ public class PostsApiController {
     private final PostsService postsService;
 
     @PostMapping("/api/v1/posts")
-    public Long save(@RequestBody PostsSaveRequestDto requestDto){
+    public Long save(@RequestBody PostsSaveRequestDto requestDto, @LoginUser SessionUser user){
+        requestDto.setWriter(user.getId());
         return postsService.save(requestDto);
     }
 
@@ -25,8 +28,8 @@ public class PostsApiController {
     }
 
     @GetMapping("/api/v1/posts/{id}")
-    public PostsResponseDto findById(@PathVariable Long id){
-        return postsService.findById(id);
+    public PostsResponseDto findOnePosts(@PathVariable Long id){
+        return postsService.findOnePosts(id);
     }
 
     @DeleteMapping("/api/v1/posts/{id}")

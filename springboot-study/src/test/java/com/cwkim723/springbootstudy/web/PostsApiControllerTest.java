@@ -72,7 +72,7 @@ public class PostsApiControllerTest {
         // given
         String title = "title";
         String content = "content";
-        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder().title(title).content(content).author("author").build();
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder().title(title).content(content).writer(1L).build();
 
         String url = "http://localhost:" + port + "/api/v1/posts";
 
@@ -110,7 +110,7 @@ public class PostsApiControllerTest {
         Posts savedPosts = postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
-                .author("author")
+                .writer(1L)
                 .build());
 
         Long updateId = savedPosts.getId();
@@ -158,7 +158,7 @@ public class PostsApiControllerTest {
         Posts savedPosts = postsRepository.save(Posts.builder()
                 .title("title")
                 .content("content")
-                .author("author")
+                .writer(1L)
                 .build());
 
         Long deleteId = savedPosts.getId();
